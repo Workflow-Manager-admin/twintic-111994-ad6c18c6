@@ -183,23 +183,27 @@ function MainContainer() {
   }
 
   function renderChoiceButtons() {
-    // Choice of X/O and Difficulty (radio/select)
+    // Enhanced, visually prominent AI difficulty dropdown and clear labels
     return (
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "center", marginBottom: 18 }}>
-        <div style={{ marginBottom: 16 }}>
-          <span style={{ fontWeight: 500, marginRight: 6, color: "#364", fontSize: "1rem" }}>
-            AI Difficulty:&nbsp;
-          </span>
+      <div style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: 22,
+        alignItems: "center",
+        marginBottom: 22
+      }}>
+        <div style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center"
+        }}>
+          <label className="difficulty-group-label" htmlFor="ai-difficulty-select">
+            AI Difficulty
+          </label>
           <select
+            id="ai-difficulty-select"
+            className="difficulty-select"
             value={difficulty}
-            style={{
-              padding: "6px 10px",
-              fontSize: "1rem",
-              borderRadius: 5,
-              border: `1px solid ${COLORS.border}`,
-              outline: "none",
-              background: "#f4f8fa"
-            }}
             onChange={e => setDifficulty(e.target.value)}
             aria-label="Select AI Difficulty"
             disabled={gameStarted}
@@ -212,14 +216,14 @@ function MainContainer() {
         <div style={{ display: 'flex', gap: 20 }}>
           <button
             className="btn btn-large"
-            style={{ background: COLORS.x, color: '#fff', borderRadius: 6, minWidth: 80 }}
+            style={{ background: COLORS.x, color: '#fff', borderRadius: 8, minWidth: 94 }}
             onClick={() => handlePlayerChoice('X')}
           >
             Play as X
           </button>
           <button
             className="btn btn-large"
-            style={{ background: COLORS.o, color: '#fff', borderRadius: 6, minWidth: 80 }}
+            style={{ background: COLORS.o, color: '#fff', borderRadius: 8, minWidth: 94 }}
             onClick={() => handlePlayerChoice('O')}
           >
             Play as O
@@ -242,7 +246,7 @@ function MainContainer() {
       <h2 className="twin-tic-title" style={{
         color: '#4caf50',
         margin: '12px 0'
-      }}>Tic Tac: Human vs AI</h2>
+      }}>Tic Tac Toe: Human vs AI</h2>
       <div className="twin-tic-status" style={{ fontSize: '1.2rem', marginBottom: 16 }}>
         {status}
       </div>
