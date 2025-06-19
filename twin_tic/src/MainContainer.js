@@ -7,11 +7,11 @@ import React, { useState, useEffect } from 'react';
  *  - Renders 3x3 grid gameboard
  *  - Alternates player X/O moves
  *  - Allows Human to choose 'X' or 'O' at start
- *  - AI plays automatically for the other symbol, picking a random free square
+ *  - Lets user SELECT AI difficulty (Easy/Medium/Hard) before game starts
+ *  - AI plays with different strength according to difficulty
  *  - Displays current turn or winner
  *  - Uses provided color palette and light theme
  */
-
 // Styling variables based on requirements
 const COLORS = {
   primary: '#4CAF50',
@@ -25,6 +25,13 @@ const COLORS = {
 
 const BOARD_SIZE = 3;
 
+// Difficulty options
+const DIFFICULTY_LABELS = {
+  easy: "Easy (Random)",
+  medium: "Medium (Blocks/Opportunities)",
+  hard: "Hard (Optimal/Minimax)",
+};
+
 // PUBLIC_INTERFACE
 function MainContainer() {
   /**
@@ -35,6 +42,7 @@ function MainContainer() {
   const [aiSymbol, setAiSymbol] = useState(null); // 'X' or 'O'
   const [humanSymbol, setHumanSymbol] = useState(null); // 'X' or 'O'
   const [gameStarted, setGameStarted] = useState(false);
+  const [difficulty, setDifficulty] = useState("medium");
 
   const winner = calculateWinner(board);
   const isDraw = !winner && board.every(Boolean);
@@ -77,27 +85,29 @@ function MainContainer() {
   }
 
   /**
-   * AI logic: Pick random valid move, and make the move as AI.
-   * Will trigger whenever it is AI's turn, after human or at game start.
+   * AI move logic, based on selected difficulty.
+   * Will trigger whenever it is AI's turn.
    */
   useEffect(() => {
     if (aiIsNext) {
       // Give the UI a tiny delay for move to "feel" more natural
       const aiTimeout = setTimeout(() => {
-        const emptyIndices = board
-          .map((v, i) => (v == null ? i : null))
-          .filter((v) => v !== null);
-        if (emptyIndices.length === 0) return;
-        const move = emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
-        makeMove(move, aiSymbol);
+        let move;
+        if (difficulty === "easy") {
+          move = chooseRandomMove(board);
+        } else if (difficulty === "medium") {
+          move = chooseMediumMove(board, aiSymbol, humanSymbol);
+        } else {
+          move = chooseHardMove(board, aiSymbol, humanSymbol);
+        }
+        if (move != null) {
+          makeMove(move, aiSymbol);
+        }
       }, 400); // 400ms "thinking" delay
       return () => clearTimeout(aiTimeout);
     }
-    // eslint-disable-next-line
     // (no need to depend on makeMove, it never changes)
-    // Only depend on aiIsNext, board, aiSymbol
-    // Ok to ignore strict exhaustive deps for this simple case
-  }, [aiIsNext, board, aiSymbol]);
+  }, [aiIsNext, board, aiSymbol, difficulty, humanSymbol]);
 
   // PUBLIC_INTERFACE
   function renderSquare(idx) {
@@ -145,9 +155,9 @@ function MainContainer() {
   let status;
   if (!gameStarted) {
     status = (
-      <span style={{ color: COLORS.secondary }}>
-        Choose your side to start:
-      </span>
+      <span style={{
+        color: '#ffc107'
+      }}>Choose your side to start</span>
     );
   } else if (winner) {
     status = (
@@ -173,22 +183,48 @@ function MainContainer() {
   }
 
   function renderChoiceButtons() {
+    // Choice of X/O and Difficulty (radio/select)
     return (
-      <div style={{ display: 'flex', gap: 20, marginBottom: 18 }}>
-        <button
-          className="btn btn-large"
-          style={{ background: COLORS.x, color: '#fff', borderRadius: 6, minWidth: 80 }}
-          onClick={() => handlePlayerChoice('X')}
-        >
-          Play as X
-        </button>
-        <button
-          className="btn btn-large"
-          style={{ background: COLORS.o, color: '#fff', borderRadius: 6, minWidth: 80 }}
-          onClick={() => handlePlayerChoice('O')}
-        >
-          Play as O
-        </button>
+      <div style={{ display: "flex", flexDirection: "column", gap: 10, alignItems: "center", marginBottom: 18 }}>
+        <div style={{ marginBottom: 16 }}>
+          <span style={{ fontWeight: 500, marginRight: 6, color: "#364", fontSize: "1rem" }}>
+            AI Difficulty:&nbsp;
+          </span>
+          <select
+            value={difficulty}
+            style={{
+              padding: "6px 10px",
+              fontSize: "1rem",
+              borderRadius: 5,
+              border: `1px solid ${COLORS.border}`,
+              outline: "none",
+              background: "#f4f8fa"
+            }}
+            onChange={e => setDifficulty(e.target.value)}
+            aria-label="Select AI Difficulty"
+            disabled={gameStarted}
+          >
+            {Object.entries(DIFFICULTY_LABELS).map(([val, label]) =>
+              <option key={val} value={val}>{label}</option>
+            )}
+          </select>
+        </div>
+        <div style={{ display: 'flex', gap: 20 }}>
+          <button
+            className="btn btn-large"
+            style={{ background: COLORS.x, color: '#fff', borderRadius: 6, minWidth: 80 }}
+            onClick={() => handlePlayerChoice('X')}
+          >
+            Play as X
+          </button>
+          <button
+            className="btn btn-large"
+            style={{ background: COLORS.o, color: '#fff', borderRadius: 6, minWidth: 80 }}
+            onClick={() => handlePlayerChoice('O')}
+          >
+            Play as O
+          </button>
+        </div>
       </div>
     );
   }
@@ -203,9 +239,10 @@ function MainContainer() {
 
   return (
     <div className="twin-tic-container" style={mainContainerStyle}>
-      <h2 className="twin-tic-title" style={{ color: COLORS.primary, margin: '12px 0' }}>
-        TwinTic: Human vs AI
-      </h2>
+      <h2 className="twin-tic-title" style={{
+        color: '#4caf50',
+        margin: '12px 0'
+      }}>Tic Tac: Human vs AI</h2>
       <div className="twin-tic-status" style={{ fontSize: '1.2rem', marginBottom: 16 }}>
         {status}
       </div>
@@ -254,6 +291,93 @@ function MainContainer() {
       }
     </div>
   );
+}
+
+/* ----- AI Difficulty Strategies ----- */
+
+// PUBLIC_INTERFACE
+function chooseRandomMove(board) {
+  // Easy: pick any available square randomly
+  const emptyIndices = board
+    .map((v, i) => (v == null ? i : null))
+    .filter((v) => v !== null);
+  if (emptyIndices.length === 0) return null;
+  return emptyIndices[Math.floor(Math.random() * emptyIndices.length)];
+}
+
+// PUBLIC_INTERFACE
+function chooseMediumMove(board, aiSymbol, humanSymbol) {
+  // Medium: Win if possible, block if needed, else random.
+  // Check if AI can win in one move
+  for (let i = 0; i < board.length; i++) {
+    if (!board[i]) {
+      const testBoard = board.slice();
+      testBoard[i] = aiSymbol;
+      if (calculateWinner(testBoard) === aiSymbol) return i;
+    }
+  }
+  // Check if human can win in one move (block)
+  for (let i = 0; i < board.length; i++) {
+    if (!board[i]) {
+      const testBoard = board.slice();
+      testBoard[i] = humanSymbol;
+      if (calculateWinner(testBoard) === humanSymbol) return i;
+    }
+  }
+  // Otherwise, pick random
+  return chooseRandomMove(board);
+}
+
+// PUBLIC_INTERFACE
+function chooseHardMove(board, aiSymbol, humanSymbol) {
+  // Hard: Minimax (AI is maximizing)
+  const maximizer = aiSymbol;
+  const minimizer = humanSymbol;
+  let bestScore = -Infinity;
+  let bestMove = null;
+  for (let i = 0; i < board.length; i++) {
+    if (!board[i]) {
+      const newBoard = [...board];
+      newBoard[i] = maximizer;
+      const score = minimax(newBoard, 0, false, maximizer, minimizer);
+      if (score > bestScore) {
+        bestScore = score;
+        bestMove = i;
+      }
+    }
+  }
+  return bestMove;
+}
+
+/**
+ * Minimax implementation (no alpha-beta for 3x3).
+ */
+function minimax(board, depth, isMaximizing, maximizer, minimizer) {
+  const winner = calculateWinner(board);
+  if (winner === maximizer) return 10 - depth;
+  if (winner === minimizer) return depth - 10;
+  if (board.every(Boolean)) return 0;
+  if (isMaximizing) {
+    let best = -Infinity;
+    for (let i = 0; i < board.length; i++) {
+      if (!board[i]) {
+        board[i] = maximizer;
+        best = Math.max(best, minimax(board, depth + 1, false, maximizer, minimizer));
+        board[i] = null;
+      }
+    }
+    return best;
+  } else {
+    let best = Infinity;
+    for (let i = 0; i < board.length; i++) {
+      if (!board[i]) {
+        board[i] = minimizer;
+        best = Math.min(best, minimax(board, depth + 1, true, maximizer, minimizer));
+        board[i] = null;
+      }
+    }
+    return best;
+  }
 }
 
 // Helper styles
