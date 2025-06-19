@@ -1,0 +1,836 @@
+:root {
+  --base-light: #00ffff;
+  --base-dark: #00008b;
+  --text-color: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Inter', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  background-color: var(--base-dark);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.navbar {
+  background-color: var(--base-dark);
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 100;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.logo-symbol {
+  color: var(--base-light);
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.hero {
+  padding-top: 120px;
+  padding-bottom: 64px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.subtitle {
+  color: var(--base-light);
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.description {
+  font-size: 1.1rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin-bottom: 16px;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.btn {
+  background-color: var(--base-light);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.btn:hover {
+  background-color: #7691ff;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
+
+.btn-large {
+  padding: 12px 24px;
+  font-size: 1.1rem;
+}
+
+/* TwinTic Game Styles */
+.twin-tic-container {
+  margin: 32px auto 0 auto;
+  background: #f9f9f9;
+  border-radius: 14px;
+  box-shadow: 0 4px 24px 0 rgba(33, 150, 243, 0.08);
+  max-width: 340px;
+  padding: 24px 12px 32px 12px;
+}
+
+.twin-tic-title {
+  letter-spacing: 0.01em;
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.twin-tic-board {
+  margin: 0 auto;
+}
+
+.twin-tic-row {
+  display: flex;
+}
+
+.twin-tic-square {
+  width: 70px;
+  height: 70px;
+  font-size: 2.2em;
+  font-weight: 700;
+  border-radius: 10px;
+  border: 2px solid #e0e0e0;
+  background: #f9f9f9;
+  outline: none;
+  cursor: pointer;
+  margin: 4px;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px 0 rgba(33, 150, 243, 0.03);
+}
+
+.twin-tic-square:active,
+.twin-tic-square:focus {
+  background: #e8f5e9;
+  box-shadow: 0 0 0 2px #2196f3a8;
+}
+
+.twin-tic-status {
+  margin: 0 0 16px 0;
+  text-align: center;
+}
+
